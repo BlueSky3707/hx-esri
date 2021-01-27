@@ -19,8 +19,12 @@ export default {
 #mapid {
   width: 100%;
   height: 100%;
+  background-color: rgba(88, 162, 223, 0.2);
 }
 .esri-ui-inner-container {
   visibility: hidden;
+}
+.esri-view .esri-view-surface--inset-outline:focus::after {
+  display: none;
 }
 </style>
