@@ -17,28 +17,30 @@
   </div>
 </template>
 <script lang="ts">
+import { reactive, toRefs } from "vue";
 import HxMap from "../mapview/HxMap.vue";
-import BaseLayerUtils from "../../maputils/BaseLayerUtils";
+import BaseLayerUtils, { aaa } from "../../maputils/BaseLayerUtils";
+
 export default {
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       index: 1,
+    });
+    return {
+      imageClick() {
+        BaseLayerUtils.showLayerByid("sximagid");
+        BaseLayerUtils.showLayerByid("sximaglid");
+        BaseLayerUtils.hideLayerByid("sxtileid");
+        BaseLayerUtils.hideLayerByid("sxtilelid");
+      },
+      vectorClick() {
+        BaseLayerUtils.hideLayerByid("sximagid");
+        BaseLayerUtils.hideLayerByid("sximaglid");
+        BaseLayerUtils.showLayerByid("sxtileid");
+        BaseLayerUtils.showLayerByid("sxtilelid");
+      },
+      ...toRefs(state),
     };
-  },
-  mounted() {},
-  methods: {
-    imageClick() {
-      BaseLayerUtils.showLayerByid("sximagid");
-      BaseLayerUtils.showLayerByid("sximaglid");
-      BaseLayerUtils.hideLayerByid("sxtileid");
-      BaseLayerUtils.hideLayerByid("sxtilelid");
-    },
-    vectorClick() {
-      BaseLayerUtils.hideLayerByid("sximagid");
-      BaseLayerUtils.hideLayerByid("sximaglid");
-      BaseLayerUtils.showLayerByid("sxtileid");
-      BaseLayerUtils.showLayerByid("sxtilelid");
-    },
   },
 };
 </script>
